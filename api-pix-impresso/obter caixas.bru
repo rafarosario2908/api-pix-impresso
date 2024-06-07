@@ -1,0 +1,19 @@
+meta {
+  name: obter caixas
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/caixas
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": 1,
+    "localizacao": "centro",
+    "saldo": 0.00
+  }
+}
