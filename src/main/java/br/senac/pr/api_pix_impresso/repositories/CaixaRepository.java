@@ -5,7 +5,7 @@ import java.util.List;
 import br.senac.pr.api_pix_impresso.models.Caixa;
 
 public interface CaixaRepository {
-    int save(Caixa caixa);
+  int save(Caixa caixa);
 
   int update(Caixa caixa);
 
@@ -16,5 +16,4 @@ public interface CaixaRepository {
   List<Caixa> findAll();
 
   int deleteAll();
-    
 }

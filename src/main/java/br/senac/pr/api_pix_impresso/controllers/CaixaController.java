@@ -38,8 +38,9 @@ public class CaixaController {
     return caixa;
   }
 
-  // PATCH
-  // PUT
-  // DELETE
+  // GET por ID
+  // PATCH - Atualização parcial
+  // PUT - Atualização completa
+  // DELETE - Exclusão
 
 }
