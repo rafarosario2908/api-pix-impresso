@@ -26,10 +26,17 @@ public class CaixaService {
     return caixaRepository.findAll();
   }
 
-  public Caixa update( Caixa caixa){
+  public int update(Caixa caixa) {
+    if (caixa == null) {
+      throw new Error("Dados do caixa inválidos");
+    }
 
-
-    
+    if (caixa.getId() <= 0 || caixa.getId() == null) {
+      throw new Error("ID do caixa inválido");
+    }
+   
+    return caixaRepository.update(caixa);
   }
+
   
 }
