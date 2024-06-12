@@ -25,5 +25,11 @@ public class CaixaService {
   public List<Caixa> findAll() {
     return caixaRepository.findAll();
   }
+
+  public Caixa update( Caixa caixa){
+
+
+    
+  }
   
 }

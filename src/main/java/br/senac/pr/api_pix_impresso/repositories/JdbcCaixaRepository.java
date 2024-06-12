@@ -53,19 +53,19 @@ public class JdbcCaixaRepository implements CaixaRepository {
 
   @Override
   public int update(Caixa caixa) {
-    // TODO Auto-generated method stub
+   
     throw new UnsupportedOperationException("Unimplemented method 'update'");
   }
 
   @Override
   public Caixa findById(Long id) {
-    // TODO Auto-generated method stub
+    
     throw new UnsupportedOperationException("Unimplemented method 'findById'");
   }
 
   @Override
   public int deleteById(Long id) {
-    // TODO Auto-generated method stub
+  
     throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
   }
 
@@ -82,7 +82,7 @@ public class JdbcCaixaRepository implements CaixaRepository {
 
   @Override
   public int deleteAll() {
-    // TODO Auto-generated method stub
+
     throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
   }
 

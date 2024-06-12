@@ -1,10 +1,10 @@
 meta {
-  name: obter caixas
+  name: Atualizar parcial Caixa
   type: http
-  seq: 2
+  seq: 4
 }
 
-get {
+patch {
   url: http://localhost:8080/caixas
   body: json
   auth: none
@@ -12,8 +12,7 @@ get {
 
 body:json {
   {
-    "id": 1,
-    "localizacao": "centro",
-    "saldo": 100
+    "localizacao": "gralha azul",
+    "saldo": 100000
   }
 }
