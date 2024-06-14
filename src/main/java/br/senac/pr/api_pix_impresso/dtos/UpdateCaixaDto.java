@@ -1,28 +1,32 @@
 package br.senac.pr.api_pix_impresso.dtos;
 
+
+// DTO - Data Transfer Object
+// Objeto que serve para transferir dados entre
+// classes ou etapas de execução
 public class UpdateCaixaDto {
-    private String localicao;
-    private Double saldo;
+  private String localizacao;
+  private Double saldo;
 
-    public UpdateCaixaDto(String localicao, Double saldo) {
-        this.localicao = localicao;
-        this.saldo = saldo;
-    }
+  public UpdateCaixaDto(String localizacao, Double saldo) {
+    this.localizacao = localizacao;
+    this.saldo = saldo;
+  }
 
-    public String getLocalicao() {
-        return localicao;
-    }
+  public String getLocalizacao() {
+    return localizacao;
+  }
 
-    public void setLocalicao(String localicao) {
-        this.localicao = localicao;
-    }
+  public void setLocalizacao(String localizacao) {
+    this.localizacao = localizacao;
+  }
 
-    public Double getSaldo() {
-        return saldo;
-    }
+  public Double getSaldo() {
+    return saldo;
+  }
 
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
-    
+  public void setSaldo(Double saldo) {
+    this.saldo = saldo;
+  }
+
 }
