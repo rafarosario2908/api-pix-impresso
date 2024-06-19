@@ -1,23 +1,22 @@
 package br.senac.pr.api_pix_impresso.dtos;
- 
-public class CreateContaDto {
-   
+
+public class updateContaDto {
   private Long agencia;
   private Long numeroConta;
   private Long digitoVerificador;
   private String nome;
-  private String CPF;
-  private long tipoConta;
+  private String cpf;
+  private Long tipoConta;
   private String numeroCartao;
   private String senha;
   private Double saldo;
-public CreateContaDto(Long agencia, Long numeroConta, Long digitoVerificador, String nome, String cPF, long tipoConta,
+public updateContaDto(Long agencia, Long numeroConta, Long digitoVerificador, String nome, String cpf, Long tipoConta,
         String numeroCartao, String senha, Double saldo) {
     this.agencia = agencia;
     this.numeroConta = numeroConta;
     this.digitoVerificador = digitoVerificador;
     this.nome = nome;
-    CPF = cPF;
+    this.cpf = cpf;
     this.tipoConta = tipoConta;
     this.numeroCartao = numeroCartao;
     this.senha = senha;
@@ -47,16 +46,16 @@ public String getNome() {
 public void setNome(String nome) {
     this.nome = nome;
 }
-public String getCPF() {
-    return CPF;
+public String getCpf() {
+    return cpf;
 }
-public void setCPF(String cPF) {
-    CPF = cPF;
+public void setCpf(String cpf) {
+    this.cpf = cpf;
 }
-public long getTipoConta() {
+public Long getTipoConta() {
     return tipoConta;
 }
-public void setTipoConta(long tipoConta) {
+public void setTipoConta(Long tipoConta) {
     this.tipoConta = tipoConta;
 }
 public String getNumeroCartao() {
@@ -77,7 +76,6 @@ public Double getSaldo() {
 public void setSaldo(Double saldo) {
     this.saldo = saldo;
 }
- 
- 
- 
+  
+    
 }

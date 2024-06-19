@@ -7,85 +7,106 @@ public class Conta {
   private Long numeroConta;
   private Long digitoVerificador;
   private String nome;
-  private String CPF;
-  private long tipoConta;
+  private String cpf;
+  private Long tipoConta;
   private String numeroCartao;
   private String senha;
-  private long saldo;
+  private Double saldo;
+
   // Criar um método construtor com todos os atributos
+  public Conta(Long id, Long agencia, Long numeroConta, Long digitoVerificador, String nome, String cpf, Long tipoConta,
+      String numeroCartao, String senha, Double saldo) {
+    this.id = id;
+    this.agencia = agencia;
+    this.numeroConta = numeroConta;
+    this.digitoVerificador = digitoVerificador;
+    this.nome = nome;
+    this.cpf = cpf;
+    this.tipoConta = tipoConta;
+    this.numeroCartao = numeroCartao;
+    this.senha = senha;
+    this.saldo = saldo;
+  }
   // Criar os getters e setters
-public Conta(Long id, Long agencia, Long numeroConta, Long digitoVerificador, String nome, String CPF, long tipoConta,
-        String numeroCartao, String senha, long saldo) {
-    this.id = id;
-    this.agencia = agencia;
-    this.numeroConta = numeroConta;
-    this.digitoVerificador = digitoVerificador;
-    this.nome = nome;
-    this.CPF = CPF;
-    this.tipoConta = tipoConta;
-    this.numeroCartao = numeroCartao;
-    this.senha = senha;
-    this.saldo = saldo;
-}
-public Long getId() {
+
+  public Long getId() {
     return id;
-}
-public void setId(Long id) {
+  }
+
+  public void setId(Long id) {
     this.id = id;
-}
-public Long getAgencia() {
+  }
+
+  public Long getAgencia() {
     return agencia;
-}
-public void setAgencia(Long agencia) {
+  }
+
+  public void setAgencia(Long agencia) {
     this.agencia = agencia;
-}
-public Long getNumeroConta() {
+  }
+
+  public Long getNumeroConta() {
     return numeroConta;
-}
-public void setNumeroConta(Long numeroConta) {
+  }
+
+  public void setNumeroConta(Long numeroConta) {
     this.numeroConta = numeroConta;
-}
-public Long getDigitoVerificador() {
+  }
+
+  public Long getDigitoVerificador() {
     return digitoVerificador;
-}
-public void setDigitoVerificador(Long digitoVerificador) {
+  }
+
+  public void setDigitoVerificador(Long digitoVerificador) {
     this.digitoVerificador = digitoVerificador;
-}
-public String getNome() {
+  }
+
+  public String getNome() {
     return nome;
-}
-public void setNome(String nome) {
+  }
+
+  public void setNome(String nome) {
     this.nome = nome;
-}
-public String getCPF() {
-    return CPF;
-}
-public void setCPF(String cPF) {
-    CPF = cPF;
-}
-public long getTipoConta() {
+  }
+
+  public String getCpf() {
+    return cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
+
+  public Long getTipoConta() {
     return tipoConta;
-}
-public void setTipoConta(long tipoConta) {
+  }
+
+  public void setTipoConta(Long tipoConta) {
     this.tipoConta = tipoConta;
-}
-public String getNumeroCartao() {
+  }
+
+  public String getNumeroCartao() {
     return numeroCartao;
-}
-public void setNumeroCartao(String numeroCartao) {
+  }
+
+  public void setNumeroCartao(String numeroCartao) {
     this.numeroCartao = numeroCartao;
-}
-public String getSenha() {
+  }
+
+  public String getSenha() {
     return senha;
-}
-public void setSenha(String senha) {
+  }
+
+  public void setSenha(String senha) {
     this.senha = senha;
-}
-public long getSaldo() {
+  }
+
+  public Double getSaldo() {
     return saldo;
-}
-public void setSaldo(long saldo) {
+  }
+
+  public void setSaldo(Double saldo) {
     this.saldo = saldo;
-}
+  }
 
 }

@@ -5,10 +5,19 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.repositories.JdbcCaixaRepository;
+import br.senac.pr.api_pix_impresso.repositories.JdbcContaRepository;
 
 // TODO - implementar um CRUD completo baseado nas chamadas do controller
 @Service
 public class ContaService implements BaseService<Conta, Long> {
+
+   private JdbcContaRepository  contaRepository;
+
+   public void updateSaldoConta(Conta conta)
+   {
+    contaRepository.update(conta);
+   }
 
   @Override
   public int save(Conta object) {
@@ -39,5 +48,6 @@ public class ContaService implements BaseService<Conta, Long> {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
   }
+  
 
 }
