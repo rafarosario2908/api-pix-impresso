@@ -1,11 +1,11 @@
 meta {
-  name: Atualizar Parcial Contas
+  name: Atualizar Parcial Conta
   type: http
   seq: 4
 }
 
 patch {
-  url: http://localhost:8080/contas/2
+  url: http://localhost:8080/contas/2/updateCadastro
   body: json
   auth: none
 }
@@ -16,11 +16,9 @@ headers {
 
 body:json {
   {
-  
-  "nome":"rafael rosario",
-  "cpf":"1234567891",
-  "tipoConta":1
-  
+  "nome": "rafael",
+  "cpf": "04888888888",
+  "tipoConta": 1
   }
 }
 
