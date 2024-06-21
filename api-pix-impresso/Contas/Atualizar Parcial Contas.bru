@@ -1,0 +1,29 @@
+meta {
+  name: Atualizar Parcial Contas
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:8080/contas/2
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+  
+  "nome":"rafael rosario",
+  "cpf":"1234567891",
+  "tipoConta":1
+  
+  }
+}
+
+body:text {
+  teste  
+}

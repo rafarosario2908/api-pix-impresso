@@ -4,18 +4,23 @@ package br.senac.pr.api_pix_impresso.controllers;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
 import br.senac.pr.api_pix_impresso.dtos.DetailContaDto;
+
 import br.senac.pr.api_pix_impresso.dtos.UpdateContaCadastroDto;
 import br.senac.pr.api_pix_impresso.dtos.UpdateContaSaldoDto;
+import br.senac.pr.api_pix_impresso.dtos.updateContaDto;
+
 import br.senac.pr.api_pix_impresso.services.impl.ContaServiceImpl;
 
 @RestController
@@ -51,6 +56,7 @@ public class ContaController {
     return contaService.findById(id);
   }
 
+
   // PATCH - Atualiza parcialmente uma conta
   @PatchMapping("/{id}/updateSaldo")
   public DetailContaDto updateSaldo(@PathVariable("id") Long id,
@@ -65,8 +71,22 @@ public class ContaController {
       @RequestBody UpdateContaCadastroDto dto) {
     DetailContaDto conta = contaService.updateCadastro(id, dto);
     return ResponseEntity.ok().body(conta);
-  }
-  // PUT - Atualiza uma conta
+
+      }
+ // PUT - Atualiza uma conta
+ @PutMapping("/{id}")
+ public ResponseEntity<Object> updateConta(@RequestBody updateContaDto dto,
+     @PathVariable Long id) {
+   // Atualizar o registro no banco
+   contaService.update(id,dto);
+     // retorna o objeto conta
+   return ResponseEntity.ok().build();  
+   }
 
   // DELETE - Deleta uma conta 
+    @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteConta(@PathVariable Long id) {
+    contaService.deleteById(id);
+    return ResponseEntity.ok().build();
+}
 }

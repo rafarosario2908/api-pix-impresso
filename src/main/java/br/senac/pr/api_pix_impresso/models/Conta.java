@@ -15,7 +15,7 @@ public class Conta {
 
   // Criar um método construtor com todos os atributos
   public Conta(Long id, Long agencia, Long numeroConta, Long digitoVerificador, String nome, String cpf, Long tipoConta,
-      String numeroCartao, String senha, Double saldo) {
+    String numeroCartao, String senha, Double saldo) {
     this.id = id;
     this.agencia = agencia;
     this.numeroConta = numeroConta;

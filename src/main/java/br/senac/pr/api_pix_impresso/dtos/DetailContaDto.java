@@ -8,6 +8,8 @@ public class DetailContaDto {
     private final String nome;
     private final String cpf;
     private final Long tipoConta;
+
+
     public DetailContaDto(Long id, Long agencia, Long numeroConta, Long digitoVerificador, String nome, String cpf,
             Long tipoConta) {
         this.id = id;
@@ -18,6 +20,8 @@ public class DetailContaDto {
         this.cpf = cpf;
         this.tipoConta = tipoConta;
     }
+
+    
     public Long getId() {
         return id;
     }
