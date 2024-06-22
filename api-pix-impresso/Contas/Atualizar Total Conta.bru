@@ -1,0 +1,33 @@
+meta {
+  name: Atualizar Total Conta
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/contas/3
+  body: json
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:json {
+   {
+  "agencia":123,
+  "numeroConta":1237,
+  "digitoVerificador":2,
+  "nome":"rafael",
+  "cpf":"999999109",
+  "tipoConta":1,
+  "numeroCartao":"1234123456729999",
+  "senha":"1234",
+  "saldo":100000
+    }
+}
+
+body:text {
+  teste  
+}

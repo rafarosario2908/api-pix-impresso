@@ -132,8 +132,14 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
 
   @Override
   public int deleteById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    String sql = "delete from  public.contas where id = :id";
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("id", id);
+
+    // Executar a instrução SQL para criar um novo registro
+    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
+    return 1;
   }
 
   @Override

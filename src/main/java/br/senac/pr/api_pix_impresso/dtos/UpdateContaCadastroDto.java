@@ -4,6 +4,7 @@ public class UpdateContaCadastroDto {
     private String nome;
     private String cpf;
     private Long tipoConta;
+    
     public UpdateContaCadastroDto(String nome, String cpf, Long tipoConta) {
         this.nome = nome;
         this.cpf = cpf;
