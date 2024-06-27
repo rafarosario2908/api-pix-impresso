@@ -12,8 +12,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.repositories.BaseJdbcRepository;
 import br.senac.pr.api_pix_impresso.shared.models.Caixa;
+import br.senac.pr.api_pix_impresso.shared.repositories.BaseJdbcRepository;
 
 @Repository
 public class JdbcCaixaRepository implements BaseJdbcRepository<Caixa, Long> {

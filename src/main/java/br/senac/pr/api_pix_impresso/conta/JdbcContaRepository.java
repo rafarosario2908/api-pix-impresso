@@ -1,6 +1,7 @@
 package br.senac.pr.api_pix_impresso.conta;
 // TODO - Implementar a interface BaseJdbcRepository
 
+import java.util.Collections;
 import java.util.HashMap;
 
 // Implementar todos os métodos para serem usados pelo service
@@ -9,67 +10,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.repositories.BaseJdbcRepository;
+import br.senac.pr.api_pix_impresso.conta.mappers.ContaRowMapper;
 import br.senac.pr.api_pix_impresso.shared.models.Conta;
+import br.senac.pr.api_pix_impresso.shared.repositories.BaseJdbcRepository;
 
 @Repository
 public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
 
-  private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-  private JdbcTemplate jdbcTemplate;
+  private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  private final JdbcTemplate jdbcTemplate;
+  private final SimpleJdbcInsert simpleJdbcInsert;
+  private final RowMapper<Conta> contaRowMapper;
 
   public JdbcContaRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
       JdbcTemplate jdbcTemplate) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     this.jdbcTemplate = jdbcTemplate;
+    this.contaRowMapper = new ContaRowMapper();
+    this.simpleJdbcInsert = new SimpleJdbcInsert(namedParameterJdbcTemplate.getJdbcTemplate());
+    simpleJdbcInsert.withTableName("contas");
+    simpleJdbcInsert.usingGeneratedKeyColumns("id");
   }
 
   @Override
   public int save(Conta object) {
-    GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-
-    // SQL placeholders can use named parameters instead of "?".
-    String sql = """
-        INSERT INTO public.contas
-            (agencia, numero_conta, digito_verificador,
-            nome, cpf, tipo_conta,
-            numero_cartao, senha, saldo)
-        VALUES (:agencia, :numero_conta, :digito_verificador,
-            :nome, :cpf, :tipo_conta,
-            :numero_cartao, :senha, :saldo)
-        """;
-
-    Map<String, Object> params = new HashMap<>();
-    params.put("agencia", object.getAgencia());
-    params.put("numero_conta", object.getNumeroConta());
-    params.put("digito_verificador", object.getDigitoVerificador());
-    params.put("nome", object.getNome());
-    params.put("cpf", object.getCpf());
-    params.put("tipo_conta", object.getTipoConta());
-    params.put("numero_cartao", object.getNumeroCartao());
-    params.put("senha", object.getSenha());
-    params.put("saldo", object.getSaldo());
-
-    // Executar a instrução SQL para criar um novo registro
-    namedParameterJdbcTemplate.update(sql,
-        new MapSqlParameterSource(params),
-        generatedKeyHolder);
-
-    var returnedKeys = generatedKeyHolder.getKeys();
-    if (returnedKeys == null) {
-      throw new Error("Erro ao salvar a conta");
-    }
-    // Obtem do registro inserido, o ID gerado pelo banco
-    Integer id = (Integer) returnedKeys.get("ID");
-
-    return id;
+    Number id = simpleJdbcInsert.executeAndReturnKey(object.toMap());
+    return id.intValue();
   }
 
   @Override
@@ -106,41 +79,19 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
     String sql = """
          SELECT id, agencia, numero_conta, digito_verificador,
                 nome, cpf, tipo_conta,
-                numero_cartao, senha, saldo FROM contas WHERE ID = ?
+                numero_cartao, senha, saldo FROM contas WHERE ID = :id
         """;
 
-    Object[] args = new Object[] { id };
-    int[] argTypes = { java.sql.Types.INTEGER };
-    Conta conta = null;
-    try {
-      conta = jdbcTemplate.queryForObject(sql, args, argTypes, (rs, rowNum) -> {
-        return new Conta(rs.getLong("id"),
-            rs.getLong("agencia"),
-            rs.getLong("numero_conta"),
-            rs.getLong("digito_verificador"),
-            rs.getString("nome"),
-            rs.getString("cpf"),
-            rs.getLong("tipo_conta"),
-            rs.getString("numero_cartao"),
-            rs.getString("senha"),
-            rs.getDouble("SALDO"));
-      });
-      return Optional.of(conta);
-    } catch (EmptyResultDataAccessException e) {
-      return Optional.ofNullable(conta);
-    }
+    Map<String, Object> parameters = Collections.singletonMap("id", id);
+    return namedParameterJdbcTemplate
+        .queryForStream(sql, parameters, contaRowMapper)
+        .findFirst();
   }
 
   @Override
   public int deleteById(Long id) {
-    String sql = "delete from  public.contas where id = :id";
-
-    Map<String, Object> params = new HashMap<>();
-    params.put("id", id);
-
-    // Executar a instrução SQL para criar um novo registro
-    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
-    return 1;
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
   }
 
   @Override
@@ -152,6 +103,7 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
             numero_cartao, senha, saldo
           FROM contas
         """;
+
     return jdbcTemplate
         .query(selectQuery,
             (rs, rowNum) -> {
@@ -172,6 +124,22 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
   public int deleteAll() {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+  }
+
+  public Optional<Conta> findByNumeroCartao(String numeroCartao) {
+    String sql = """
+         SELECT id, agencia, numero_conta, digito_verificador,
+                nome, cpf, tipo_conta,
+                numero_cartao, senha, saldo FROM contas WHERE numero_cartao = :numero_cartao
+        """;
+
+    Map<String, Object> parameters = Collections
+        .singletonMap("numero_cartao", numeroCartao);
+
+    var conta = namedParameterJdbcTemplate
+        .queryForStream(sql, parameters, contaRowMapper)
+        .findFirst();
+    return conta;
   }
 
 }
