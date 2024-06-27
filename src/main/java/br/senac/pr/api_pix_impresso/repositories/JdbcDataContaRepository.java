@@ -18,8 +18,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.mappers.ContaRowMapper;
-import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.conta.mappers.ContaRowMapper;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
 
 @Repository
 public class JdbcDataContaRepository implements BaseJdbcRepository<Conta, Long> {

@@ -1,11 +1,11 @@
-package br.senac.pr.api_pix_impresso.services;
+package br.senac.pr.api_pix_impresso.caixa;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.senac.pr.api_pix_impresso.models.Caixa;
-import br.senac.pr.api_pix_impresso.repositories.JdbcCaixaRepository;
+import br.senac.pr.api_pix_impresso.services.BaseService;
+import br.senac.pr.api_pix_impresso.shared.models.Caixa;
 
 @Service
 public class CaixaService implements BaseService<Caixa, Long> {

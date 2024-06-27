@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
 
 @Repository
 public class JdbcTemplateContaRepository implements BaseJdbcRepository<Conta, Long> {
